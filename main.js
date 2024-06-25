@@ -23,7 +23,7 @@ const sizes = {
 
 //Light
 const light = new THREE.PointLight(0xffffff, 200, 100);
-light.position.set(0, 10, 0);
+light.position.set(0, 10, 10);
 scene.add(light);
 
 //Camera
@@ -39,8 +39,9 @@ renderer.render(scene, camera);
 
 //Controls
 const controls = new OrbitControls(camera, canvas);
+
 controls.enableDamping = true;
-// controls.autoRotate = true;
+controls.autoRotate = true;
 // controls.autoRotateSpeed = 5;
 
 const loop = () => {
