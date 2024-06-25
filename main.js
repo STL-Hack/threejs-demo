@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { ScreenNode } from "three/examples/jsm/nodes/display/BlendModeNode.js";
+import gsap from "gsap";
 
 //scene
 const scene = new THREE.Scene();
@@ -40,7 +41,7 @@ const controls = new OrbitControls(camera, canvas);
 
 controls.enableDamping = true;
 controls.autoRotate = true;
-controls.autoRotateSpeed = 5000;
+controls.autoRotateSpeed = 5;
 
 const loop = () => {
   controls.update();
@@ -48,3 +49,19 @@ const loop = () => {
   window.requestAnimationFrame(loop);
 };
 loop();
+
+let rgb = [];
+window.addEventListener("mousemove", (e) => {
+  rgb = [
+    Math.round((e.pageX / sizes.width) * 255),
+    Math.round((e.pageY / sizes.height) * 255),
+    110,
+  ];
+
+  let newColor = new THREE.Color(`rgb(${rgb.join(",")})`);
+  gsap.to(mesh.material.color, {
+    r: newColor.r,
+    g: newColor.g,
+    b: newColor.b,
+  });
+});
