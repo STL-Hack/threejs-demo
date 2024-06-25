@@ -37,6 +37,8 @@ renderer.render(scene, camera);
 
 const controls = new OrbitControls(camera, canvas);
 
+controls.enableDamping = true;
+controls.autoRotate = true;
 const loop = () => {
   controls.update();
   renderer.render(scene, camera);
